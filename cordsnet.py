@@ -99,7 +99,6 @@ class cordsnet(nn.Module):
         out = self.out_avgpool(self.relu(rs[self.depth-1])+self.relu(rs[self.depth-2]))
         out = self.out_flatten(out)
         out = self.out_fc(out)
-        out = out.argmax(1)
 
         return out
 
