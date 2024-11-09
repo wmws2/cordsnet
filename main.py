@@ -29,5 +29,5 @@ with torch.no_grad():
         inputs, labels = inputs.to(device), labels.to(device)
 
         # get the output of the model pre-softmax
-        out = model(inputs,labels,device,alpha)
+        out = model(inputs,device,alpha)
         

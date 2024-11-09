@@ -71,7 +71,7 @@ class cordsnet(nn.Module):
         self.out_flatten = nn.Flatten()
         self.out_fc = nn.utils.parametrizations.weight_norm(nn.Linear(channels[self.depth],N_class,bias=True))
 
-    def forward(self,inputs,labels,rank,alpha):
+    def forward(self,inputs,rank,alpha):
 
         current_batch_size = inputs.size()[0]
         channels = [64,64,128,128,256,256,512,512]
