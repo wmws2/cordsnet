@@ -9,6 +9,8 @@ Code and model checkpoint for the paper [[Recurrent neural network dynamical sys
 
 ### 2. Introduction
 
+
+
 ### 3. Model checkpoint
 In this repository, we have uploaded a training checkpoint of CordsNet-R8 pretrained on ImageNet along with minimalistic code required to run the model. All required files are in the main directory.
 
@@ -23,7 +25,7 @@ In this repository, we have uploaded a training checkpoint of CordsNet-R8 pretra
 In the current state, <code>main.py</code> is written such that images from the ImageNet dataset are passed to the model as input, but you may simply replace <code>inputs</code> with your own desired images. The <code>forward</code> method in the <code>cordsnet</code> class receives input with format <code>[inputs,device,alpha]</code>, where <code>inputs</code> is the array of images, <code>device</code> is the device to run the model on (ideally a GPU), and <code>alpha</code> is the time discretization divided by the time constant. It was set to 0.2 during training, representing 2 ms time steps and 10 ms time constants. <code>cordsnet.py</code> is currently written to give the pre-softmax layer as output, but feel free to make edits if you want to extract neural activities <code>rs</code> at the current time step.  
 
 ### 4. Model training
-The working directory here is <code>./training</code>. If you just want to see how the model is simulated and how the loss is calculated, refer to <code>class_rnn_5_final.py</code>. Otherwise, we provide all the code required to train our models here. Refer to the files in the main directory for annotations that will help with understanding the code here. Note that most models were trained on multiple nodes, each with multiple GPUs; the code is specifically written to do that on our clusters and will not user-friendly. We recommend writing your own code for distributed training tailored to your own available hardware. 
+The working directory here is <code>./training/</code>. If you just want to see how the model is simulated and how the loss is calculated, refer to <code>class_rnn_5_final.py</code>. Otherwise, we provide all the code required to train our models here. Refer to the files in the main directory for annotations that will help with understanding the code here. Note that most models were trained on multiple nodes, each with multiple GPUs; the code is specifically written to do that on our clusters and will not user-friendly. We recommend writing your own code for distributed training tailored to your own available hardware. 
 
 #### 4.1 Files needed
 - <code>class_rnn_1_compatibility.py</code>/<code>main_training_1_compatibility.py</code> are the files required to train the equivalent CNN in step 1 of our proposed method. <br>
@@ -38,7 +40,7 @@ The working directory here is <code>./training</code>. If you just want to see h
 We provide two ways to train the model: one using our proposed method to initialize the weights and then fine tune, and another by training directly from random initialization. To use our proposed method, run the scripts in numerical order. To train a model directly after randomly initializing model weights, run <code>main_training_5_finetune.py</code> without loading pretrained weights. 
 
 ### 5. Analysis toolkit
-The working directory here is <code>./analysis</code>. We provide the code for numerically stable implementations of Arnoldi iteration and power iteration specifically tailored for convolutional structures. 
+The working directory here is <code>./analysis/</code>. We provide the code for numerically stable implementations of Arnoldi iteration and power iteration specifically tailored for convolutional structures. 
 
 #### 5.1 Files needed
 - <code>compute_eigenvalues.py</code> is the script to compute eigenvalues of convolutions using Arnoldi iteration. <br>
