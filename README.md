@@ -10,6 +10,18 @@ Code and model checkpoint for the paper [[Recurrent neural network dynamical sys
 ### 2. Introduction
 
 ### 3. Model checkpoint
+In this repository, we have uploaded a training checkpoint of CordsNet-R8 pretrained on ImageNet. All required files are in the main directory.
+
+#### 3.1 Files needed
+
+- <code>main.py</code> is the script to run and experiment which imports or loads the other files below. <br>
+- <code>cordsnet.py</code> contains the model class. <br>
+- <code>utils.py</code> contains all image preprocessing functions as well as other utilities. <br>
+- <code>cordsnetr8.pth</code> contains the model state dictionary of the trained model. <br>
+- If you wish to work with ImageNet, you will need to download and unpack <code>ILSVRC2012_img_train.tar</code> and <code>ILSVRC2012_img_val.tar</code>. We refrain from distributing the dataset here, but a quick Google search should get you the link to those files. Other datasets in this work, namely MNIST, F-MNIST and CIFAR-10/100 will automatically download if you do not have them when you run our code.
+
+#### 3.2 Description
+In the current state, <code>main.py</code> is written such that images from the ImageNet dataset are passed to the model as input, but you may simply replace <code>inputs</code> with your own desired images. The <code>forward</code> method in the <code>cordsnet</code> class receives input with format <code>[inputs,device,alpha]</code>, where <code>inputs</code> is the array of images, <code>device</code> is the device to run the model on (ideally a GPU), and <code>alpha</code> is the time discretization divided by the time constant. It was set to 0.2 during training, representing 2 ms time steps and 10 ms time constants. <code>cordsnet.py</code> is currently written to give the pre-softmax layer as output, but feel free to make edits if you want to extract neural activities <code>rs</code> at the current time step.  
 
 ### 4. Model training
 
