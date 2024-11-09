@@ -35,9 +35,17 @@ The working directory here is <code>./training</code>. If you just want to see h
 - If you wish to work with ImageNet, you will need to download and unpack <code>ILSVRC2012_img_train.tar</code> and <code>ILSVRC2012_img_val.tar</code>. We refrain from distributing the dataset here, but a quick Google search should get you the link or torrent to those files. Other datasets in this work, namely MNIST, F-MNIST and CIFAR-10/100 will automatically download if you do not have them when you run our code.
 
 #### 4.2 Description
-We provide two ways to train the model: one using our proposed method to initialize the weights and then fine tune, and another by training directly from random initialization. To use our proposed method, run the scripts in this folder in numerical order. To simply train a model directly after randomly initializing the weights, you can run <code>main_training_5_finetune.py</code> without loading pretrained weights. 
+We provide two ways to train the model: one using our proposed method to initialize the weights and then fine tune, and another by training directly from random initialization. To use our proposed method, run the scripts in numerical order. To train a model directly after randomly initializing model weights, run <code>main_training_5_finetune.py</code> without loading pretrained weights. 
 
 ### 5. Analysis toolkit
+The working directory here is <code>./analysis</code>. We provide the code for numerically stable implementations of Arnoldi iteration and power iteration specifically tailored for convolutional structures. 
+
+#### 5.1 Files needed
+- <code>compute_eigenvalues.py</code> is the script to compute eigenvalues of convolutions using Arnoldi iteration. <br>
+- <code>compute_eigenvector.py</code> is the script to compute the top eigenvector of convolutions using power iteration. <br>
+
+#### 5.2 Description
+In both files, we first convert a convolutional operation into a linear 2-D weight matrix, and perform eigendecomposition directly. You may use them to analyze smaller CNNs. In the second half of both files, we provide the code to the iterative algorithms described above. In <code>compute_eigenvalues.py</code>, we perform a slow but stable 100-step QR decomposition after Arnoldi iterations to ensure stability. Based on our testing, this still runs within a tolerable time window of <10s on our largest models. In <code>compute_eigenvector.py</code>, we perform parallelized power iteration leveraging the memory of our GPUs, but you may set <code>trials = 1</code> and still get consistent results.
 
 ### 6. Citation
 ```
