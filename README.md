@@ -16,3 +16,13 @@ Code and model checkpoint for the paper [[Recurrent neural network dynamical sys
 ### 5. Analysis toolkit
 
 ### 6. Citation
+```
+@inproceedings{soo2024recurrent,
+ author = {Soo, Wayne W.M. and Battista, Aldo and Radmard, Puria and Wang, Xiao-Jing},
+ booktitle = {Advances in Neural Information Processing Systems},
+ publisher = {Curran Associates, Inc.},
+ title = {Recurrent neural network dynamical systems for biological vision},
+ volume = {37},
+ year = {2024}
+}
+```
