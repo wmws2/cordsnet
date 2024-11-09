@@ -22,7 +22,7 @@ Recurrent neural networks (RNNs), specifically continuous-time dynamical RNNs, a
 \mathbf{T}\frac{d\mathbf{r}}{dt} = - \mathbf{r} + \sigma\left( \mathbf{W}_\text{rec}\mathbf{r} + \mathbf{b} + \mathbf{W}_\text{inp}\mathbf{h}_\text{inp} \right)
 ```
 
-This leads to a very interesting situation where RNNs and CNNs are both proposed models of the visual system. As a result, CNNs with recurrence have been proposed in the past, but here we take it a step further and introduce the **Co**nvolution **R**NN **D**ynamical **S**ystem, or CordsNet, which introduces continuous-time recurrent dynamics into CNNs:
+This leads to a very interesting situation where RNNs and CNNs are both proposed models of the visual system. As a result, CNNs with recurrence have been proposed in the past, but here we take it a step further and introduce the [Co]nvolutional [R]NN [D]ynamical [S]ystem, or CordsNet, which introduces continuous-time recurrent dynamics into CNNs:
 ```math
 \mathbf{T}\frac{d\mathbf{r}_l}{dt} = - \mathbf{r}_l + \sigma\left( \text{Conv}_\text{rec}(\mathbf{r}_l) + \mathbf{b} + \text{Conv}_\text{inp}(\mathbf{h}_\text{inp}) \right)
 ```
