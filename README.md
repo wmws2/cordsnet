@@ -8,6 +8,10 @@ Code and model checkpoint for the paper [[Recurrent neural network dynamical sys
 - Otherwise, read on below for an introduction to this work.
 
 ### 2. Introduction
+<p align="center">
+  <img src="/figure.png" width="600">
+</p>
+
 
 
 
