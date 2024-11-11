@@ -36,7 +36,7 @@ In this repository, we have uploaded a training checkpoint of CordsNet-R8 pretra
 - <code>main.py</code> is the script to run and experiment which imports or loads the other files below. <br>
 - <code>cordsnet.py</code> contains the model class. <br>
 - <code>utils.py</code> contains all image preprocessing functions as well as other utilities. <br>
-- <code>cordsnetr8.pth</code> contains the model state dictionary of the trained model. <br>
+- <code>cordsnetr8.pth</code> contains the state dictionary of the trained model. <br>
 - If you wish to work with ImageNet, you will need to download and unpack <code>ILSVRC2012_img_train.tar</code> and <code>ILSVRC2012_img_val.tar</code>. We refrain from distributing the dataset here, but a quick Google search should get you the link or torrent to those files. Other datasets in this work, namely MNIST, F-MNIST and CIFAR-10/100 will automatically download if you do not have them when you run our code.
 
 #### 3.2 Description
