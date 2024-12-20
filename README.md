@@ -9,7 +9,7 @@ Code and model checkpoint for the paper [[Recurrent neural network dynamical sys
 
 ### 2. Introduction
 <p align="center">
-  <img src="/figure.png" width="600">
+  <img src="/figure.png" width="550">
 </p>
 
 Convolutional neural networks (CNNs) are commonly seen in vision neuroscience literature due to their image processing capabilities. A typical convolutional layer in a CNN trained for image classification consists of a 2D-convolution, normalization, followed by a non-linear function:
