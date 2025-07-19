@@ -126,3 +126,35 @@ class cordsnet(nn.Module):
         # RNN dynamics
         r[area]  = (1-alpha)*r[area] + alpha*self.relu(self.area_conv[area](r[area]) + self.conv_bias[area] + self.area_area[area](areainput))
         return r[area]
+    
+    def record(self, inputs, rank, alpha, layers=[6, 7]):
+        
+        current_batch_size = inputs.size(0)
+        channels = [64, 64, 128, 128, 256, 256, 512, 512]
+        sizes = [56, 56, 28, 28, 14, 14, 7, 7]
+
+        rs = [torch.zeros(current_batch_size, channels[j], sizes[j], sizes[j], device=rank)
+            for j in range(self.depth)]
+
+        timesteps = 100
+        total_steps = timesteps * 2
+
+        activity = {
+            layer: torch.zeros(total_steps, current_batch_size, channels[layer], sizes[layer], sizes[layer], device=rank)
+            for layer in layers
+        }
+
+        with torch.no_grad():
+            for t in range(timesteps):
+                for j in range(self.depth - 1, -1, -1):
+                    rs[j] = self.rnn(j, rs, inputs * 0, alpha)
+                for layer in layers:
+                    activity[layer][t] = rs[layer]
+
+        for t in range(timesteps):
+            for j in range(self.depth - 1, -1, -1):
+                rs[j] = self.rnn(j, rs, inputs, alpha)
+            for layer in layers:
+                activity[layer][timesteps + t] = rs[layer]
+
+        return activity

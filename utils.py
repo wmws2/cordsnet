@@ -3,6 +3,7 @@ import torchvision
 from torchvision import datasets,transforms
 from torchvision.transforms import v2
 from collections import OrderedDict
+from PIL import Image
 
 channels = [64,64,128,128,256,256,512,512]
 sizes = [56,56,28,28,14,14,7,7]
@@ -115,3 +116,18 @@ def load_dataset(name,split):
             ]))
 
     return dataset
+
+def process_image(pil_image):
+
+    # this applies the preprocessing done on ImageNet images
+    transform = transforms.Compose([
+        v2.Resize(256),
+        v2.CenterCrop(224),
+        v2.ToImage(), 
+        v2.ToDtype(torch.float32, scale=True),
+        v2.Normalize(mean=[0.485, 0.456, 0.406],
+                     std=[0.229, 0.224, 0.225])
+    ])
+
+    image_tensor = transform(pil_image)
+    return image_tensor.unsqueeze(0)  # [1, 3, 224, 224]
