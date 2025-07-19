@@ -13,7 +13,8 @@ device = 'cuda'
 alpha = 0.2
 
 # load dataset using torch, make sure the dataset is in the correct format
-#this returns a [1, 3, 224, 224] image
+# ** THIS ONLY WORKS ON SQUARE IMAGES ** if your image is rectangular, pad with zeros first
+# this returns a [1, 3, 224, 224] image
 # feel free to stack a bunch of your own images
 own_image = process_image(Image.open('example_image.png').convert('RGB')) 
 
